@@ -1,4 +1,6 @@
-from unit_base import Unit
+from assets.unit_base import Unit
+
+
 
 class Mage(Unit):
     def __init__(self):
@@ -7,6 +9,7 @@ class Mage(Unit):
         self.attack = 5
         self.defence = 0
         self.speed = 0
+        self.skill_points = 0
 
 
 class Warrior(Unit):
@@ -16,6 +19,7 @@ class Warrior(Unit):
         self.attack = 5
         self.defence = 5
         self.speed = 0
+        self.skill_points = 0
 
 
 class Medic(Unit):
@@ -25,6 +29,7 @@ class Medic(Unit):
         self.attack = 5
         self.defence = 0
         self.speed = 0
+        self.skill_points = 0
 
 
 class Paladin(Unit):
@@ -34,4 +39,4 @@ class Paladin(Unit):
         self.attack = 5
         self.defence = 10
         self.speed = 0
-
+        self.skill_points = 0
