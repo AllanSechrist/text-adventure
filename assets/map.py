@@ -9,24 +9,29 @@ class Cell(object):
 class Map(object):
     def __init__(self, rows, columns=None):
         self.board = []
+        self.cells = []
         # self.start = [0, 0] # row, col
         # self.exit = [len(self.board), len(self.board[0])] # row, col
         
 
-
-        id = 1 # creates a board filled with Cells with ids
+        # creates a matrix filled with Cells with ids
+        id = 1 
         for row in range(rows):
             self.board.append([])
             if columns:
                 for col in range(columns):
                     cell = Cell(id)
                     self.board[row].append(cell)
+                    self.cells.append(cell)
                     id += 1
             else:
                 for col in range(rows):
                     cell = Cell(id)
                     self.board[row].append(cell)
+                    self.cells.append(cell)
                     id += 1
+
+        
 
 
     def draw_board(self, player_x, player_y):

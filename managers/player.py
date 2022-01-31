@@ -26,5 +26,9 @@ class PlayerManager():
         elif user_choice == "Q":
             return True
         
+        if self.y < 0 or self.x < 0:
+            self.x = self.previous_x
+            self.y = self.previous_y
+            print("You have hit a wall!")
 
 

@@ -2,14 +2,11 @@ from assets.map import Map
 from managers.player import PlayerManager
 
 
+
 class GameManager():
     def __init__(self):
         self.map = Map(10)
         self.player = PlayerManager()
-
-
-    def update_player_position(self):
-        self.map.move_player()
 
 
     def map_loop(self):
