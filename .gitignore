@@ -146,5 +146,8 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-test.py
 # End of https://www.toptal.com/developers/gitignore/api/flask
+
+# Test files
+test.py
+test2.py

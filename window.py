@@ -3,34 +3,40 @@ from pygame.locals import *
 
 
 class Block(pygame.sprite.Sprite):
-    def __init__(self, area, pos):
+    def __init__(self, area, pos, outline_color, fill_color):
         super().__init__()
         self.area = area
         self.pos = pos
         self.image = pygame.Surface(self.area)
         self.rect = self.image.get_rect()
+        self.image.fill(outline_color, self.rect)
+        self.image.fill(fill_color, self.rect.inflate(-2, -2))
         self.mapped = False
 
     
-    def set_color(self, color):
-        self.image.fill(color, self.rect.inflate(-2, -2))
+    def update(self, color, event_list):
+        for event in event_list:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if self.rect.collidepoint(event.pos):
+                    self.mapped = True
 
-    def check_unmapped(self):
-        pass
+        if self.mapped:
+            self.image.fill(color, self.rect.inflate(-2, -2))
 
-def draw_brick(brick, outline_color, fill_color):
-    # Fill with the outline color
-    brick.image.fill(outline_color, brick.rect)#brick.rect
-    # Fill with the actual block color
-    brick.image.fill(fill_color, brick.rect.inflate(-2, -2))
-    return brick.image
 
-def get_brick(area, pos, outline_color, fill_color):
-    # Create brick object
-    b = Block(area, pos)
-    # Draw the object
-    b.image = draw_brick(b, outline_color, fill_color)
-    return b
+# def draw_brick(brick, outline_color, fill_color):
+#     # Fill with the outline color
+#     brick.image.fill(outline_color, brick.rect)
+#     # Fill with the actual block color
+#     brick.image.fill(fill_color, brick.rect.inflate(-2, -2))
+#     return brick.image
+
+# def get_brick(area, pos, outline_color, fill_color):
+#     # Create brick object
+#     b = Block(area, pos)
+#     # Draw the object
+#     b.image = draw_brick(b, outline_color, fill_color)
+#     return b
 
 
 pygame.init()
@@ -64,30 +70,33 @@ def draw_map():
     for x in range(0, WINDOWWIDTH, block_size):
         for y in range(0, WIDNOWHEIGHT, block_size):
             pos = (x, y)
-            tiles.append(get_brick(area, pos, BLACK, UNMAPPED))
+            tiles.append(Block(area=area, pos=pos, outline_color=BLACK, fill_color=UNMAPPED))
             
     return tiles
 
 
-tiles = draw_map()
-print(len(tiles))
+group = pygame.sprite.Group(draw_map())
+print(len(group))
+
 while True:
-    for event in pygame.event.get():
+    event_list = pygame.event.get()
+    for event in event_list:
         if event.type == QUIT:
             terminate()
 
-        if event.type == MOUSEBUTTONUP:
-            pos = pygame.mouse.get_pos()
-            clicked_tiles = [tile for tile in tiles if tile.rect.collidepoint(pos)]
-            print(len(clicked_tiles))
-            print(pos)
-            for tile in clicked_tiles:
-                tile.mapped = True
+        # if event.type == MOUSEBUTTONUP:
+        #     pos = pygame.mouse.get_pos()
+        #     clicked_tiles = [tile for tile in tiles if tile.rect.collidepoint(pos)]
+        #     print(len(clicked_tiles))
+        #     print(pos)
+        #     for tile in clicked_tiles:
+        #         tile.mapped = True
 
-    for tile in tiles:
-        if tile.mapped:
-            tile.set_color(MAPPED)
-        window.blit(tile.image, tile.pos)
+    group.update(color=MAPPED, event_list=event_list)
+
+    group.draw(window)
+    # for tile in group:
+    #     window.blit(tile.image, tile.pos)
         
     pygame.display.flip()
     
