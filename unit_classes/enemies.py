@@ -9,6 +9,7 @@ class Rat(Unit):
         self.luck = 3
         self.vitality = 3
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
+        self.name = 'Rat'
 
 
 class Mole(Unit):
@@ -19,6 +20,7 @@ class Mole(Unit):
         self.luck = 3
         self.vitality = 5
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
+        self.name = 'Mole'
 
 
 class Beetle(Unit):
@@ -29,3 +31,7 @@ class Beetle(Unit):
         self.luck = 3
         self.vitality = 4
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
+        self.name = 'Beetle'
+
+
+

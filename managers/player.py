@@ -1,4 +1,4 @@
-
+from unit_classes.player_classes import *
 
 
 class PlayerManager():
@@ -9,10 +9,10 @@ class PlayerManager():
         self.previous_x = 0
         self.previous_y = 0
 
-        self.front_row = []
-        self.back_row = []
+        # self.front_row = [Paladin()]
+        # self.back_row = [Mage()]
 
-        self.party = [self.front_row, self.back_row]
+        self.party = [Paladin(), Mage()]
 
     def move_player(self):
         user_choice = input("Please enter a direction(N,E,S,W): ").upper()

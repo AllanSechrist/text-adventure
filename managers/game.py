@@ -8,7 +8,7 @@ class GameManager():
     def __init__(self):
         self.map = Map(10)
         self.player = PlayerManager()
-        self.combat_manager = CombatManager()
+        self.combat_manager = CombatManager(player_party = self.player.party)
 
 
     def map_loop(self):
@@ -21,5 +21,4 @@ class GameManager():
     def combat_loop(self):
         done = False
         while not done:
-            return
-            pass
+            done = self.combat_manager.combat()

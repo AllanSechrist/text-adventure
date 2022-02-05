@@ -11,6 +11,7 @@ class Mage(Unit):
         self.vitality = 3
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.name = 'Mage'
 
 
 class Warrior(Unit):
@@ -22,6 +23,7 @@ class Warrior(Unit):
         self.vitality = 5
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.name = 'Warrior'
 
 
 class Medic(Unit):
@@ -33,6 +35,7 @@ class Medic(Unit):
         self.vitality = 4
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.name = "Medic"
 
 
 class Paladin(Unit):
@@ -44,6 +47,7 @@ class Paladin(Unit):
         self.vitality = 6
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.name = "Paladin"
 
 
 class Arbalist(Unit):
@@ -55,5 +59,6 @@ class Arbalist(Unit):
         self.vitality = 4
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.name = "Arbalist"
 
 
