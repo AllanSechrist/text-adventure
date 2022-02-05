@@ -9,6 +9,11 @@ class PlayerManager():
         self.previous_x = 0
         self.previous_y = 0
 
+        self.front_row = []
+        self.back_row = []
+
+        self.party = [self.front_row, self.back_row]
+
     def move_player(self):
         user_choice = input("Please enter a direction(N,E,S,W): ").upper()
 
