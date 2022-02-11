@@ -46,5 +46,6 @@ class Unit():
             self.hp = self.hp - damage
             print(f"{self.name} took {str(damage)} damage!")
 
+
     def defend(self):
         self.defending = True

@@ -12,10 +12,10 @@ class CombatManager():
         self.player_attack_phase()
         return True
 
+
     def player_attack_phase(self):
         for unit in self.player_party:
             unit.defending = False
-
         index = 0
         done = False
         while not done:
@@ -36,6 +36,7 @@ class CombatManager():
                     index += 1
                 else:
                     print("You must enter a valid input!")
+                
             elif player_input == "DEFEND" or player_input == "D":
                 self.player_party[index].defending = True
                 print(f"{self.player_party[index].name} is defending!")

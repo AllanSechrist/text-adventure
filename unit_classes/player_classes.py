@@ -13,6 +13,16 @@ class Mage(Unit):
         self.skill_points = 3
         self.name = 'Mage'
 
+    
+    def fireball(self, target):
+        print(f'{self.name} casts fireball!')
+        roll = self.roll()
+        if roll + self.technique < target.agility:
+            print("miss")
+        else:
+            damage = self.technique * 2 - target.defence
+            target.hit(damage)
+
 
 class Warrior(Unit):
     def __init__(self):
