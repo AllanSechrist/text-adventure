@@ -1,5 +1,5 @@
 from assets.unit_base import Unit
-
+from assets.mage_skills import *
 
 
 class Mage(Unit):
@@ -11,17 +11,30 @@ class Mage(Unit):
         self.vitality = 3
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.skills = {'FIRE': Fire(), 'ICE': Ice(), 'LIGHTNING': Lightning()}
         self.name = 'Mage'
 
     
-    def fireball(self, target):
-        print(f'{self.name} casts fireball!')
-        roll = self.roll()
-        if roll + self.technique < target.agility:
-            print("miss")
-        else:
-            damage = self.technique * 2 - target.defence
-            target.hit(damage)
+    def cast(self, target):
+        done = False
+        for key, skill in self.skills.items():
+            print(f'{skill.name}')
+        while not done:
+            player_input = input("Please select a skill: ").upper()
+            if player_input in self.skills:
+                print(f"{self.name} casts {skill.name} on {target.name}!")
+                skill.damage(target, self.roll(), self.technique)
+                done = True
+            else:
+                print("Please make a valid input")
+            # for skill in self.skills:
+            #     if player_input == skill.name.upper():
+            #         print(f"{self.name} casts {skill.name} on {target.name}!")
+            #         skill.damage(target, self.roll(), self.technique)
+            #         done = True
+            #         return
+            #     else:
+            #         print('Please make a valid input')
 
 
 class Warrior(Unit):
@@ -33,6 +46,7 @@ class Warrior(Unit):
         self.vitality = 5
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.skills = []
         self.name = 'Warrior'
 
 
@@ -45,6 +59,7 @@ class Medic(Unit):
         self.vitality = 4
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.skills = []
         self.name = "Medic"
 
 
@@ -57,6 +72,7 @@ class Paladin(Unit):
         self.vitality = 6
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.skills = []
         self.name = "Paladin"
 
 
@@ -69,6 +85,7 @@ class Arbalist(Unit):
         self.vitality = 4
         super().__init__(vitality=self.vitality, strength=self.strength, technique=self.technique)
         self.skill_points = 3
+        self.skills = []
         self.name = "Arbalist"
 
 

@@ -13,25 +13,38 @@ class CombatManager():
         return True
 
 
+    def get_target(self):
+        for i, enemy in enumerate(self.enemies):
+            print(f"{i}: {enemy.name}")
+        target = int(input("Please select a target by number: "))
+        return target
+
+
+    def enemy_attack_phase(self):
+        pass
+
+
     def player_attack_phase(self):
         for unit in self.player_party:
             unit.defending = False
         index = 0
         done = False
         while not done:
+            print(' ')
             print("Attack")
             print("Defend")
             print("Skill")
             print("Escape")
+            print(' ')
+            print(f'{self.player_party[index].name} HP:{self.player_party[index].hp}/{self.player_party[index].max_hp}')
+            print(f'{self.player_party[index].name} TP:{self.player_party[index].tp}/{self.player_party[index].max_tp}')
             player_input = input(f"Please select an action for {self.player_party[index].name}: ").upper()
 
             if player_input == "ATTACK" or player_input == "A":
-                for enemy in range(len(self.enemies)):
-                    print(f"{enemy}: {self.enemies[enemy].name}")
-                target = int(input("Please select a target by number: ")) # for testing
+                target = self.get_target()
                 if target < len(self.enemies):
-                    print(f"{self.player_party[index].name} attacks {self.enemies[enemy].name}")
-                    self.player_party[index].basic_attack(self.enemies[enemy])
+                    print(f"{self.player_party[index].name} attacks {self.enemies[target].name}")
+                    self.player_party[index].basic_attack(self.enemies[target])
                     
                     index += 1
                 else:
@@ -43,7 +56,9 @@ class CombatManager():
                 index += 1
 
             elif player_input == "SKILL" or player_input == "S":
-                print("Skill to come at a later date!")
+                target = self.get_target()
+                if target < len(self.enemies):
+                    self.player_party[index].cast(self.enemies[target])
                 index += 1
 
             elif player_input == "ESCAPE" or player_input == "E":
