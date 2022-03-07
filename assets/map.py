@@ -19,13 +19,13 @@ class Map(object):
         for row in range(rows):
             self.board.append([])
             if columns:
-                for col in range(columns):
+                for _ in range(columns):
                     cell = Cell(id)
                     self.board[row].append(cell)
                     self.cells.append(cell)
                     id += 1
             else:
-                for col in range(rows):
+                for _ in range(rows):
                     cell = Cell(id)
                     self.board[row].append(cell)
                     self.cells.append(cell)
@@ -34,15 +34,39 @@ class Map(object):
         
 
 
+    # def draw_board(self, player_x, player_y):
+    #     """
+    #     Draws the board to the terminal
+    #     """
+    #     wall = "----"
+    #     for row in range(len(self.board)):
+    #         row_to_draw = '|'
+    #         wall_to_draw = ''
+    #         for cell in range(len(self.board[row])):
+    #             if [row, cell] == [player_y, player_x]:
+    #                 row_to_draw = row_to_draw + ' P ' + '|'
+    #                 wall_to_draw = wall_to_draw + wall
+    #             else:
+    #                 row_to_draw = row_to_draw + ' - ' + '|'
+    #                 wall_to_draw = wall_to_draw + wall
+
+    #         print(wall_to_draw)
+    #         print(row_to_draw)
+    #     for i in range(len(self.board[0])):
+    #         print(wall, end='')
+        
+    #     print()
+
+    
     def draw_board(self, player_x, player_y):
         """
         Draws the board to the terminal
         """
         wall = "----"
-        for row in range(len(self.board)):
+        for row, _ in enumerate(self.board):
             row_to_draw = '|'
             wall_to_draw = ''
-            for cell in range(len(self.board[row])):
+            for cell, _ in enumerate(self.board[row]):
                 if [row, cell] == [player_y, player_x]:
                     row_to_draw = row_to_draw + ' P ' + '|'
                     wall_to_draw = wall_to_draw + wall
@@ -52,7 +76,7 @@ class Map(object):
 
             print(wall_to_draw)
             print(row_to_draw)
-        for i in range(len(self.board[0])):
+        for _ in self.board[0]:
             print(wall, end='')
         
         print()

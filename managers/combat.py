@@ -1,4 +1,4 @@
-from unit_classes.enemies import *
+from unit_classes.floor_one_enemies import *
 
 class CombatManager():
     def __init__(self, player_party):
@@ -45,6 +45,10 @@ class CombatManager():
                 if target < len(self.enemies):
                     print(f"{self.player_party[index].name} attacks {self.enemies[target].name}")
                     self.player_party[index].basic_attack(self.enemies[target])
+                    if self.enemies[target].hp <= 0:
+                        print(f'{self.enemies[target].name} has died.')
+                        del self.enemies[target]
+
                     
                     index += 1
                 else:
@@ -73,5 +77,8 @@ class CombatManager():
                 print("You must enter a valid command!")
 
             if index > len(self.player_party)- 1:
+                done = True
+
+            if len(self.enemies) == 0:
                 done = True
 
