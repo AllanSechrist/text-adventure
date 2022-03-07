@@ -20,6 +20,10 @@ class CombatManager():
         return target
 
 
+    def generate_enemy_list(self):
+        pass
+    
+
     def enemy_attack_phase(self):
         pass
 
