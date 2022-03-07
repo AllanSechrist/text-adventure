@@ -6,7 +6,7 @@ class Fire(Skill):
         super().__init__(1.8, 5, 'offensive')
         self.element = "Fire"
         self.skill_level = 0
-        self.name = 'Fire'
+        self.name = "Fire"
 
 
 class Ice(Skill):
@@ -14,7 +14,7 @@ class Ice(Skill):
         super().__init__(1.8, 5, 'offensive')
         self.element = "Ice"
         self.skill_level = 0
-        self.name = 'Ice'
+        self.name = "Ice"
 
 
 class Lightning(Skill):

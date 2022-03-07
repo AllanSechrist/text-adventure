@@ -1,4 +1,5 @@
-import random
+from random import randint
+
 
 class Unit():
     def __init__(self, vitality, strength, technique):
@@ -25,7 +26,7 @@ class Unit():
 
 
     def roll(self):
-        roll = random.randint(0, 100)
+        roll = randint(0, 100)
         return roll
     
 

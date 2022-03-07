@@ -1,9 +1,10 @@
-from unit_classes.Mage import Mage
-from unit_classes.Warrior import Warrior
-from unit_classes.Paladin import Paladin
-from unit_classes.Medic import Medic
-from unit_classes.Arbalist import Arbalist
+from unit_classes.player_classes.Mage import Mage
+from unit_classes.player_classes.Warrior import Warrior
+from unit_classes.player_classes.Paladin import Paladin
+from unit_classes.player_classes.Medic import Medic
+from unit_classes.player_classes.Arbalist import Arbalist
 from random import randint
+
 
 class PlayerManager():
     def __init__(self):
@@ -18,7 +19,8 @@ class PlayerManager():
 
         self.party = [Paladin(), Mage()]
 
-        self.encounter_meter = 0
+        self.encounter_meter = 0 # once this value reaches 100, create an encounter.
+
 
     def move_player(self):
         user_choice = input("Please enter a direction(N,E,S,W): ").upper()
@@ -44,6 +46,7 @@ class PlayerManager():
         else:
             self.increase_encounter_meter()
     
+
     def increase_encounter_meter(self):
         roll = randint(1, 15)
         self.encounter_meter += roll

@@ -48,8 +48,6 @@ class CombatManager():
                     if self.enemies[target].hp <= 0:
                         print(f'{self.enemies[target].name} has died.')
                         del self.enemies[target]
-
-                    
                     index += 1
                 else:
                     print("You must enter a valid input!")

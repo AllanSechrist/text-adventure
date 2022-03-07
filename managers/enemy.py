@@ -5,22 +5,14 @@ from random import choice, randint
 class EnemyManager():
     def __init__(self, player):
         self.encounter_meter = 0
+        self.player_floor = 0
 
 
     def roll(self):
         roll = randint(0, 100)
         return roll
 
-
-    def floor_one_enemy_groups():
-        groups = {
-            0 : [Rat(), Rat(), Rat()],
-            1 : [Rat(), Beetle()],
-            2 : [Mole(), Rat()],
-            3 : [Mole(), Beetle()],
-        }
-
-    
-    def generate_enemy_list(self, floor):
+   
+    def generate_enemy_list(self):
         enemy_group = []
         roll = self.roll()
