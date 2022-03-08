@@ -8,7 +8,7 @@ class GameManager():
     def __init__(self):
         self.map = Map(10)
         self.player = PlayerManager()
-        self.combat_manager = CombatManager(player_party = self.player.party)
+        self.combat_manager = CombatManager(player_party=self.player.party)
 
 
     def map_loop(self):

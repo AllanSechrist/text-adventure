@@ -1,13 +1,18 @@
-from unit_classes.floor_one_enemies import *
+from unit_classes.floor_one_enemies import generate_enemy
+from random import randint
 
 class CombatManager():
     def __init__(self, player_party):
-        self.enemies = [Rat(), Rat()]
+        self.enemies = []
         self.player_party = player_party
     
 
     def combat(self):
+        self.make_enemy_list()
         print("You are under attack!")
+        print(" ")
+        for enemy in self.enemies:
+            print(enemy.name, end=' ')
         print(" ")
         self.player_attack_phase()
         return True
@@ -20,8 +25,9 @@ class CombatManager():
         return target
 
 
-    def generate_enemy_list(self):
-        pass
+    def make_enemy_list(self):
+        for i in range(3):
+            self.enemies.append(generate_enemy())
     
 
     def enemy_attack_phase(self):
@@ -43,14 +49,15 @@ class CombatManager():
             print(f'{self.player_party[index].name} HP:{self.player_party[index].hp}/{self.player_party[index].max_hp}')
             print(f'{self.player_party[index].name} TP:{self.player_party[index].tp}/{self.player_party[index].max_tp}')
             player_input = input(f"Please select an action for {self.player_party[index].name}: ").upper()
+            print(' ')
 
             if player_input == "ATTACK" or player_input == "A":
                 target = self.get_target()
                 if target < len(self.enemies):
                     print(f"{self.player_party[index].name} attacks {self.enemies[target].name}")
                     self.player_party[index].basic_attack(self.enemies[target])
+                    # check for target death
                     if self.enemies[target].hp <= 0:
-                        print(f'{self.enemies[target].name} has died.')
                         del self.enemies[target]
                     index += 1
                 else:
@@ -65,6 +72,9 @@ class CombatManager():
                 target = self.get_target()
                 if target < len(self.enemies):
                     self.player_party[index].cast(self.enemies[target])
+                    # check for target death
+                    if self.enemies[target].hp <= 0:
+                        del self.enemies[target]
                 index += 1
 
             elif player_input == "ESCAPE" or player_input == "E":
@@ -78,7 +88,7 @@ class CombatManager():
             else:
                 print("You must enter a valid command!")
 
-            if index > len(self.player_party)- 1:
+            if index > len(self.player_party) - 1:
                 done = True
 
             if len(self.enemies) == 0:

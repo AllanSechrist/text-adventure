@@ -18,11 +18,13 @@ class Mage(Unit):
     def cast(self, target):
         done = False
         while not done:
+            print(' ') 
             for index, skill in enumerate(self.skills):
                 print(f'{index}: {skill.name}')
             selected_skill = int(input("Please select a skill by number: "))
             if selected_skill < len(self.skills):
                 casted_skill = self.skills[selected_skill]
+                print(' ')
                 print(f"{self.name} casts {casted_skill.name} on {target.name}!")
                 casted_skill.damage(target, self.roll(), self.technique)
                 done = True

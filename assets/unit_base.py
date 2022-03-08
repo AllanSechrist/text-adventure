@@ -43,11 +43,15 @@ class Unit():
         if self.defending:
             self.hp = self.hp - int(damage / 2)
             print(f"{self.name} took {str(damage)} damage!")
-            print(f'{self.name} has {self.hp} hp left!')
+            print(f'{self.name} has {self.hp} hp left!')   
         else:
             self.hp = self.hp - damage
             print(f"{self.name} took {str(damage)} damage!")
             print(f'{self.name} has {self.hp} hp left!')
+            
+        # check for death
+        if self.hp <= 0:
+            print(f'{self.name} has been felled!')
 
 
     def defend(self):

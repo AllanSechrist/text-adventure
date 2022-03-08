@@ -17,7 +17,7 @@ class PlayerManager():
         # self.front_row = [Paladin()]
         # self.back_row = [Mage()]
 
-        self.party = [Paladin(), Mage()]
+        self.party = [Mage(), Paladin(), Arbalist()]
 
         self.encounter_meter = 0 # once this value reaches 100, create an encounter.
 

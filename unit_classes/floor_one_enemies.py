@@ -1,5 +1,5 @@
 from assets.unit_base import Unit
-
+from random import randint
 
 class Rat(Unit):
     def __init__(self):
@@ -35,3 +35,11 @@ class Beetle(Unit):
 
 
 
+def generate_enemy():
+    roll = randint(0, 100)
+    if roll < 50:
+        return Rat()
+    elif roll >= 50 and roll <= 80:
+        return Mole()
+    else:
+        return Beetle()
